@@ -7,9 +7,9 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password 
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD} 
     networks:
       - fullstack
     volumes:
@@ -19,9 +19,9 @@ services:
       build: .
       container_name: "rest-api"
       environment:
-          DB_USERNAME: "user"  
-          DB_PASSWORD: "password"
-          DB_DB: "postgres"
+          DB_USERNAME: ${POSTGRES_USER}
+          DB_PASSWORD: ${POSTGRES_PASSWORD}
+          DB_DB: ${POSTGRES_DB}
           DB_HOST: "db"
           DB_TABLE: "postgres"
           DB_PORT: "5432"
