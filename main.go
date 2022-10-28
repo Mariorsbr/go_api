@@ -1,19 +1,28 @@
 package main
 
 import(
-	
-	"net/http"
+
+	"api/models"
+	"api/controllers"
+	//"database/sql"
+	//"gorm.io/gorm"
+	//"gorm.io/driver/postgres"
+
+	//"net/http"
     "github.com/gin-gonic/gin"
 
 )
 
+
 func main(){
-	r := gin.Default()
+	router := gin.Default()
 
-	r.GET("/", func(c *gin.Context) {
-	  c.JSON(http.StatusOK, gin.H{"data": "hello world"})    
-	})
+	models.ConnectDatabase() // new
+	router.GET("/users",controllers.GetUser)
+	router.DELETE("/users/:id",controllers.DeleteUser)
+	router.POST("users", controllers.CreateUser)
+	
 
-	r.Run()
+	router.Run()
 }
 

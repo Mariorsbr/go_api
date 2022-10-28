@@ -2,9 +2,7 @@ FROM golang:1.18.4 AS build
 
 WORKDIR /app
 
-COPY  go.mod ./
-COPY  go.sum ./
-COPY  main.go ./
+COPY  . ./
 
 RUN go build -o /server
 
